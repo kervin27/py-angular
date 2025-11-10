@@ -1,59 +1,37 @@
-# PyAngular
+---
+title: SSR Angular 19 + TypeScript
+description: The default Server Side Rendered Angular TS starter
+tags:
+  - Node
+  - Angular 19
+  - TypeScript
+---
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.0.
+# SSR Angular + TypeScript
 
-## Development server
+This project was originally generated with [`ng new my-app`](https://angular.dev/installation#create-a-new-project) and selecting `Yes` when asked to use SSR.
 
-To start a local development server, run:
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/A5t142)
 
-```bash
-ng serve
-```
+## ✨ Features
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- SSR Angular 19 + TypeScript
 
-## Code scaffolding
+## 💁‍♀️ Local Development
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- Install required dependencies with `npm install`
+- Run `npm run dev` for a local development server
+- Navigate to `http://127.0.0.1:4200/`. The application will automatically reload if you change any of the source files.
 
-```bash
-ng generate component component-name
-```
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## ❓ What was changed from the default Angular 19 Server Side Rendered example?
 
-```bash
-ng generate --help
-```
+- The `start` script was renamed to `dev` since it starts a local development server.
+- The `serve:ssr:my-app` script was renamed to `start` since it starts the production server.
 
-## Building
+Railway will automatically use the `build` and `start` scripts from the package.json.
 
-To build the project run:
+Angular's server side rendered server will listen on the host `0.0.0.0` and the `PORT` environment variable that Railway expects the app to.
 
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Thats all the changes needed to deploy a server side rendered Angular 19 app on Railway!
