@@ -1,8 +1,11 @@
 [build]
-builder = "NIXPACKS"
+builder = "DOCKERFILE"
+
 # Installa le dipendenze e costruisci Angular
 buildCommand = "npm install && npm run build"
+
 staticBuild = true
+
 # Usa il percorso corretto in base al nome del progetto in angular.json
 staticPublishPath = "dist/ng-habado"
 
@@ -13,3 +16,7 @@ rewrite = "index.html"
 [build.env]
 # Versione Node LTS compatibile con Angular
 NODE_VERSION = "22.16"
+
+
+[deploy]
+port = 3000
