@@ -27,4 +27,5 @@ EXPOSE 3000
 ENV PORT 3000
 
 # start usando la variabile d'ambiente PORT (shell expansion)
-CMD ["sh", "-c", "serve -s /app/dist -l 0.0.0.0:${PORT}"]
+CMD ["sh", "-c", "serve -s /app/dist -l ${PORT}"]
+
