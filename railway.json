@@ -1,0 +1,11 @@
+{
+  "build": {
+    "builder": "NIXPACKS",
+    "commands": ["npm ci", "npm run build"]
+  },
+  "deploy": {
+    "startCommand": "npx serve -s dist",
+    "healthcheckPath": "/",
+    "staticPublishPath": "dist"
+  }
+}
