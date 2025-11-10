@@ -18,7 +18,7 @@ WORKDIR /app
 RUN npm i -g serve
 
 # copia i file buildati
-COPY --from=builder /app/dist/ng-habado /app/dist
+COPY --from=builder /app/dist/ng-habado/browser /app/dist
 
 # espone porta (documentativa)
 EXPOSE 3000
