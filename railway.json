@@ -4,8 +4,6 @@
     "commands": ["npm ci", "npm run build"]
   },
   "deploy": {
-    "startCommand": "npx serve -s dist/ng-habado",
-    "healthcheckPath": "/",
     "staticPublishPath": "dist/ng-habado"
   }
 }
