@@ -2,8 +2,7 @@
 # Usa Nixpacks (il builder automatico di Railway)
 builder = "NIXPACKS"
 
-[build.env]
-NODE_VERSION = "22.12.0"
+
 
 # Comando di build Angular
 buildCommand = "npm run build"
@@ -17,3 +16,6 @@ staticPublishPath = "dist/ng-habado"
 [static]
 # Riscrive tutte le richieste a index.html per supportare il routing Angular
 rewrite = "index.html"
+
+[build.env]
+NODE_VERSION = "22"
