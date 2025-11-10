@@ -1,21 +1,15 @@
 [build]
-# Usa Nixpacks (il builder automatico di Railway)
 builder = "NIXPACKS"
-
-
-
-# Comando di build Angular
-buildCommand = "npm run build"
-
-# Attiva la modalità statica
+# Installa le dipendenze e costruisci Angular
+buildCommand = "npm install && npm run build"
 staticBuild = true
-
-# Percorso dei file generati da Angular (modifica se il nome del progetto è diverso)
+# Usa il percorso corretto in base al nome del progetto in angular.json
 staticPublishPath = "dist/ng-habado"
 
 [static]
-# Riscrive tutte le richieste a index.html per supportare il routing Angular
+# Serve index.html per tutte le rotte Angular (SPA)
 rewrite = "index.html"
 
 [build.env]
-NODE_VERSION = "22.12.0"
+# Versione Node LTS compatibile con Angular
+NODE_VERSION = "22"
