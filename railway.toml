@@ -18,4 +18,4 @@ staticPublishPath = "dist/ng-habado"
 rewrite = "index.html"
 
 [build.env]
-NODE_VERSION = "22"
+NODE_VERSION = "22.12.0"
