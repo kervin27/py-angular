@@ -4,7 +4,7 @@ builder = "DOCKERFILE"
 # Installa le dipendenze e costruisci Angular
 buildCommand = "npm install && npm run build"
 
-staticBuild = true
+staticBuild = false
 
 # Usa il percorso corretto in base al nome del progetto in angular.json
 staticPublishPath = "dist/ng-habado"
