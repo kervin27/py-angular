@@ -1,9 +1,0 @@
-{
-  "build": {
-    "builder": "NIXPACKS",
-    "commands": ["npm ci", "npm run build"]
-  },
-  "deploy": {
-    "staticPublishPath": "dist/ng-habado"
-  }
-}
