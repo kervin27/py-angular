@@ -12,4 +12,4 @@ rewrite = "index.html"
 
 [build.env]
 # Versione Node LTS compatibile con Angular
-NODE_VERSION = "22"
+NODE_VERSION = "22.12"
