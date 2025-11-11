@@ -13,4 +13,19 @@ export const routes: Routes = [
         (m) => m.TestComponent
       ),
   },
+  {
+    path: 'login',
+    loadComponent: () =>
+      import('./core/pages/login/login').then((m) => m.Login),
+  },
+  {
+    path: 'register',
+    loadComponent: () =>
+      import('./core/pages/register/register').then((m) => m.Register),
+  },
+  {
+    path: '**',
+    loadComponent: () =>
+      import('./core/pages/error-page/error-page').then((m) => m.ErrorPage),
+  },
 ];
