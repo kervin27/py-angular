@@ -27,10 +27,22 @@
                 "input": "public"
               }
             ],
-            "styles": ["src/styles.scss"]
+            "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/styles.scss"
+            ],
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+            ]
           },
           "configurations": {
             "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/config/config-dev.ts",
+                  "with": "src/config/config-prod.ts"
+                }
+              ],
               "budgets": [
                 {
                   "type": "initial",
