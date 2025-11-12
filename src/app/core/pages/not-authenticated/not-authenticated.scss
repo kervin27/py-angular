@@ -1,0 +1,52 @@
+@keyframes pop {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+h1 {
+  font-size: 5rem;
+  font-weight: bold;
+  color: #ff6f61;
+  text-shadow: 2px 2px #ffc107;
+}
+
+p {
+  font-size: 1.3rem;
+  margin-top: 15px;
+}
+
+.emoji {
+  font-size: 4rem;
+  display: inline-block;
+  animation: bounce 1s infinite alternate ease-in-out;
+}
+
+@keyframes bounce {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-15px);
+  }
+}
+
+.btn {
+  margin-top: 25px;
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  border-radius: 20px;
+  background-color: #6f42c1;
+  border: none;
+  color: #fff;
+  transition: background 0.3s;
+}
+
+.btn:hover {
+  background-color: #5a32a3;
+}

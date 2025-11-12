@@ -3,11 +3,11 @@ import { RouterLink } from '@angular/router';
 import { pathRoute } from '../../../app.routes';
 
 @Component({
-  selector: 'app-error-page',
+  selector: 'app-not-authenticated',
   imports: [RouterLink],
-  templateUrl: './error-page.html',
-  styleUrl: './error-page.scss',
+  templateUrl: './not-authenticated.html',
+  styleUrl: './not-authenticated.scss',
 })
-export class ErrorPage {
+export class NotAuthenticated {
   pathRoute = pathRoute;
 }

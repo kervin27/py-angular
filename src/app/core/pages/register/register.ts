@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../services/auth';
+import { pathRoute } from '../../../app.routes';
 
 @Component({
   selector: 'app-register',
@@ -15,6 +17,9 @@ import { RouterLink } from '@angular/router';
   standalone: true,
 })
 export class Register {
+  authService: AuthService = inject(AuthService);
+  route: Router = inject(Router);
+
   form = new FormGroup(
     {
       username: new FormControl<string>('', {
@@ -47,8 +52,23 @@ export class Register {
 
   submit() {
     if (this.form.valid) {
-      console.log('Dati registrazione:', this.form.value);
-      // Qui puoi chiamare il servizio utentiService.createUtente(...)
+      this.authService
+        .register(
+          this.form.value.username!,
+          this.form.value.email!,
+          this.form.value.password!
+        )
+        .subscribe({
+          next: (response) => {
+            alert(
+              'La registrazione è avvenuta con successo! Effettua il login.'
+            );
+            this.route.navigate([pathRoute.login]);
+          },
+          error: (error) => {
+            console.error('Registration error:', error);
+          },
+        });
     } else {
       this.form.markAllAsTouched();
     }

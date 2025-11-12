@@ -5,7 +5,10 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../services/auth';
+import { pathRoute } from '../../../app.routes';
+import { throwError } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -16,8 +19,8 @@ import { RouterLink } from '@angular/router';
 })
 export class Login {
   form = new FormGroup({
-    email: new FormControl<string>('', {
-      validators: [Validators.required, Validators.email],
+    username: new FormControl<string>('', {
+      validators: [Validators.required],
       nonNullable: true,
     }),
     password: new FormControl<string>('', {
@@ -26,12 +29,20 @@ export class Login {
     }),
   });
 
-  constructor() {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   submit() {
     if (this.form.valid) {
-      console.log('Login:', this.form.value);
-      // Qui puoi chiamare il servizio utentiService.createUtente(...)
+      this.authService
+        .login(this.form.value.username!, this.form.value.password!)
+        .subscribe({
+          next: (response) => {
+            this.router.navigate([pathRoute.home]);
+          },
+          error: (error) => {
+            return throwError(() => error);
+          },
+        });
     } else {
       this.form.markAllAsTouched();
     }
