@@ -28,14 +28,18 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
       // Gestione globale degli errori
       if (error.status === 401) {
         modalService.show(
-          error.error?.error || 'Session expired. Please log in again.'
+          error.error?.message || 'Session expired. Please log in again.'
         );
         localStorage.removeItem('authToken');
+      } else if (error.status === 400) {
+        modalService.show(
+          error.error?.message || 'Dati non validi. Controlla e riprova. '
+        );
       } else if (error.status === 403) {
         router.navigate([pathRoute.notAuthenticated]);
       } else {
         modalService.show(
-          error.error?.error ||
+          error.error?.message ||
             'An unexpected error occurred. Please try again later.'
         );
       }
