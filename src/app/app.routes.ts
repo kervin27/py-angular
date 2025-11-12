@@ -1,27 +1,43 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './core/guard/auth-guard-guard';
+
+export const pathRoute = {
+  home: 'test-page',
+  login: 'login',
+  register: 'register',
+  notAuthenticated: 'not-authenticated',
+};
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'test-page',
+    redirectTo: pathRoute.home,
     pathMatch: 'full',
   },
   {
-    path: 'test-page',
+    path: pathRoute.home,
     loadComponent: () =>
       import('./components/test-component/test-component').then(
         (m) => m.TestComponent
       ),
+    canActivate: [authGuard],
   },
   {
-    path: 'login',
+    path: pathRoute.login,
     loadComponent: () =>
       import('./core/pages/login/login').then((m) => m.Login),
   },
   {
-    path: 'register',
+    path: pathRoute.register,
     loadComponent: () =>
       import('./core/pages/register/register').then((m) => m.Register),
+  },
+  {
+    path: pathRoute.notAuthenticated,
+    loadComponent: () =>
+      import('./core/pages/not-authenticated/not-authenticated').then(
+        (m) => m.NotAuthenticated
+      ),
   },
   {
     path: '**',
