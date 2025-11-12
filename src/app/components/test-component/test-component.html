@@ -31,26 +31,29 @@
       </div>
     </div>
     <div class="row mt-2">
-      <div class="col-12">
-        Password
-        <input
-          type="password"
-          formControlName="password"
-          placeholder="Password"
-          class="form-control form-control-sm"
-          type="text"
-          aria-label=".form-control-sm example"
-        />
-        @if (form.controls.password.invalid && form.controls.password.touched) {
-        <div style="color: red">Password richiesta (minimo 6 caratteri)</div>
-        }
-      </div>
-    </div>
-    <div class="row mt-2">
       <div class="col-3">
+        @if (isModifica()) {
+        <button
+          type="submit"
+          [disabled]="form.invalid"
+          class="btn btn-primary"
+          (click)="putModificaUtente()"
+        >
+          Modifica
+        </button>
+        <button
+          type="button"
+          (click)="isModifica.set(false); utenteSelected.set(null);"
+          class="btn btn-danger"
+        >
+          Annulla
+        </button>
+        } @else {
         <button type="submit" [disabled]="form.invalid" class="btn btn-primary">
           Inserisci
         </button>
+
+        }
       </div>
     </div>
   </form>
@@ -62,13 +65,31 @@
       <tr>
         <th scope="col">Username</th>
         <th scope="col">email</th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
       @for (utente of utenti(); track $index; let i = $index) {
       <tr>
-        <td class="col-6">{{utente.username}}</td>
-        <td class="col-6">{{utente.email}}</td>
+        <td class="col-4">{{utente.username}}</td>
+        <td class="col-4">{{utente.email}}</td>
+        <td class="col-2 text-end">
+          <!-- Pulsante modifica -->
+          <button
+            class="btn btn-sm btn-outline-warning me-2"
+            (click)="modificaUtente(utente)"
+          >
+            <i class="bi bi-pencil-square"></i>
+          </button>
+
+          <!-- Pulsante elimina -->
+          <button
+            class="btn btn-sm btn-outline-danger"
+            (click)="eliminaUtente(utente)"
+          >
+            <i class="bi bi-trash3-fill"></i>
+          </button>
+        </td>
       </tr>
       }
     </tbody>

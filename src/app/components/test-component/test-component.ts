@@ -26,13 +26,11 @@ export class TestComponent {
       validators: [Validators.required, Validators.email],
       nonNullable: true,
     }),
-    password: new FormControl<string>('', {
-      validators: [Validators.required, Validators.minLength(6)],
-      nonNullable: true,
-    }),
   });
 
   utenti = signal<Utente[]>([]);
+  isModifica = signal(false);
+  utenteSelected = signal<Utente | null>(null);
 
   constructor(private utentiService: Utenti) {}
 
@@ -50,16 +48,47 @@ export class TestComponent {
     const newUtente: Utente = {
       username: this.form.value.username!,
       email: this.form.value.email!,
-      password: this.form.value.password!,
     };
 
-    this.createUtente(newUtente);
+    if (this.isModifica()) {
+      // Logica di modifica utente (non implementata in questo esempio)
+      this.isModifica.set(false);
+      this.form.reset();
+
+      return;
+    } else {
+      this.createUtente(newUtente);
+    }
   }
 
   createUtente(newUtente: Utente) {
     this.utentiService.createUtente(newUtente).subscribe((created) => {
       this.getAllUtenti();
       this.form.reset();
+    });
+  }
+
+  putModificaUtente() {
+    this.utentiService
+      .updateUtente(this.utenteSelected()!.id, this.form.value as Utente)
+      .subscribe(() => {
+        this.getAllUtenti();
+        this.form.reset();
+      });
+  }
+
+  modificaUtente(utente: Utente) {
+    this.isModifica.set(true);
+    this.form.patchValue({
+      username: utente.username,
+      email: utente.email,
+    });
+    this.utenteSelected.set(utente);
+  }
+
+  eliminaUtente(utente: Utente) {
+    this.utentiService.deleteUtente(utente.id).subscribe(() => {
+      this.getAllUtenti();
     });
   }
 }

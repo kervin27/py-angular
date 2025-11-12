@@ -1,0 +1,13 @@
+.table td,
+.table th {
+  vertical-align: middle;
+}
+
+button i {
+  font-size: 1.1rem;
+}
+
+button:hover {
+  transform: scale(1.1);
+  transition: 0.2s;
+}

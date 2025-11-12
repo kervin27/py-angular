@@ -2,7 +2,8 @@ import { Routes } from '@angular/router';
 import { authGuard } from './core/guard/auth-guard-guard';
 
 export const pathRoute = {
-  home: 'test-page',
+  home: 'home',
+  testPage: 'test-page',
   login: 'login',
   register: 'register',
   notAuthenticated: 'not-authenticated',
@@ -16,6 +17,12 @@ export const routes: Routes = [
   },
   {
     path: pathRoute.home,
+    loadComponent: () =>
+      import('./pages/homepage/homepage').then((m) => m.Homepage),
+    canActivate: [authGuard],
+  },
+  {
+    path: pathRoute.testPage,
     loadComponent: () =>
       import('./components/test-component/test-component').then(
         (m) => m.TestComponent

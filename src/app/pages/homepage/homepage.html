@@ -1,1 +1,28 @@
-<p>homepage works!</p>
+<div class="container text-center mt-5">
+  <div class="hero-section">
+    <h1 class="title fade-in">Ciao, {{ username() }} 👋</h1>
+
+    <p class="lead mt-4">
+      Questa è la tua nuova piattaforma. Gestisci utenti, dati e API con
+      semplicità.
+    </p>
+
+    <button
+      class="btn btn-primary btn-lg mt-3"
+      [routerLink]="`/${pathRoute.testPage}`"
+    >
+      Testa le api ✨
+    </button>
+    <div class="mt-5">
+      <img
+        src="https://media.giphy.com/media/LmNwrBhejkK9EFP504/giphy.gif"
+        alt="Rocket gif"
+        class="img-fluid rounded shadow rocket-gif"
+      />
+    </div>
+  </div>
+
+  <footer class="mt-5 text-muted small">
+    <p>Made with ❤️ by Team Habado</p>
+  </footer>
+</div>

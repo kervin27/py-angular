@@ -20,14 +20,14 @@ export class Utenti {
     return this.http.post<Utente>(`${this.baseUrl}${this.endpoint}`, utente);
   }
 
-  updateUtente(id: number, utente: Utente): Observable<Utente> {
+  updateUtente(id: string | undefined, utente: Utente): Observable<Utente> {
     return this.http.put<Utente>(
       `${this.baseUrl}${this.endpoint}/${id}`,
       utente
     );
   }
 
-  deleteUtente(id: number) {
-    return this.http.delete(`${this.baseUrl}${this.endpoint}/${id}`);
+  deleteUtente(id: string | undefined): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}${this.endpoint}/${id}`);
   }
 }

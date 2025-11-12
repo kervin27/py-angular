@@ -1,9 +1,10 @@
 import { HttpInterceptorFn } from '@angular/common/http';
-import { catchError, throwError } from 'rxjs';
+import { catchError, finalize, throwError } from 'rxjs';
 import { ErrorModalService } from '../services/error-modal-service';
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { pathRoute } from '../../app.routes';
+import { isLoading } from '../states/loading.signal';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   // Recupera il token dal localStorage (o da un servizio AuthService)
@@ -19,28 +20,26 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
       })
     : req;
 
+  isLoading.set(true);
+
   return next(authReq).pipe(
+    finalize(() => isLoading.set(false)),
     catchError((error: any) => {
       // Gestione globale degli errori
       if (error.status === 401) {
-        // Token non valido o scaduto → logout o redirect login
-
         modalService.show(
           error.error?.error || 'Session expired. Please log in again.'
         );
         localStorage.removeItem('authToken');
-        // Se usi Router, puoi fare il redirect:
-        // router.navigate(['/login']);
       } else if (error.status === 403) {
         router.navigate([pathRoute.notAuthenticated]);
       } else {
-        console.error('Errore HTTP:', error);
         modalService.show(
           error.error?.error ||
             'An unexpected error occurred. Please try again later.'
         );
       }
-
+      isLoading.set(false);
       return throwError(() => error); // Propaga l'errore al componente
     })
   );
